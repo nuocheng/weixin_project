@@ -38,24 +38,53 @@
 				<span class="fa fa-eercast"></span>
 			</div>
 			<div class="header-left-bottom">
-				<form action="#" method="post">
+				<form id="myForm">
 					<div class="icon1">
 						<span class="fa fa-user"></span>
-						<input type="email" placeholder="用户名" required=""/>
+						<input name="username" placeholder="用户名" required=""/>
 					</div>
 					<div class="icon1">
 						<span class="fa fa-lock"></span>
-						<input type="password" placeholder="密码" required=""/>
+						<input type="password" name="password" placeholder="密码" required=""/>
 					</div>
 					
 					<div class="bottom">
 						<button class="btn">Log In</button>
 					</div>
-					<div class="links">
-						<p class="right"><a href="#">注册</a></p>
-						<div class="clear"></div>
-					</div>
-				</form>	
+
+				</form>
+
+                <script>
+                    //
+                    $('#myForm').submit(function(event) {
+                      // 阻止默认的表单提交行为
+                      event.preventDefault();
+
+                      // 获取表单数据
+                      var formData = $(this).serialize();
+
+                      // 使用$.ajax()方法提交表单数据
+                      $.ajax({
+                        url: "{% url 'admin_home:login'%}",
+                        type: 'POST',
+                        data: formData,
+                        success: function(response) {
+                            if(response.flag==1){
+                                window.location.href = "{%url 'admin_home:index'%}";
+                            }
+                            else{
+                                var $alert = $('<div class="alert alert-danger" style="position:absolute;border: 1px solid red; color: red;top:15%;left:46%;z-index: 1">提交失败，请稍后重试！</div>').appendTo('body');
+                                    setTimeout(function(){
+                                      $alert.remove();
+                                    }, 5000);
+                            }
+                        },
+                        error: function(error) {
+                          console.log(error);
+                        }
+                      });
+                    });
+                </script>
 			</div>
 			
 		</div>
