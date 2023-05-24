@@ -9,5 +9,6 @@ urlpatterns = [
     path("index2/",views.index2,name="index2"),
     path("change_show/",views.change_show,name="change_show"),
     path("add_info/",views.add_info,name="add_info"),
+    path("get_show/",views.get_show,name="get_show"),
 
 ]

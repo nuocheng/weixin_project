@@ -112,6 +112,30 @@ def add_info(request):
         return JsonResponse({"flag":1,"message":"success"})
 
 
+def get_show(request):
+    if request.method=="GET":
+        op_all_info=Opinion.objects.filter(show=1)
+        all_info=[]
+        for item in op_all_info:
+            demo=Image.objects.filter(op_id=item)
+            image_file=[]
+            for i in demo:
+                image_file.append(str(i.image))
+            info={
+                "id":item.id,
+                "name":item.name,
+                "number_id":item.number_id,
+                "title":item.title,
+                "content":item.content,
+                "flag":item.flag,
+                "show":item.show,
+                "create_at":item.create_at,
+                "image":image_file
+            }
+            all_info.append(info)
+        return JsonResponse({"info":all_info})
+
+
 
 
 
