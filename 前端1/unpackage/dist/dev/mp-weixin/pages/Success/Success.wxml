@@ -1,0 +1,1 @@
+<view class="btn-row"><button type="primary" class="primary" bindtap="{{a}}"><text class="word-btn-white">提交成功</text></button></view>

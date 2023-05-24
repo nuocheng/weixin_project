@@ -1,0 +1,76 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "公司名称"
+			}
+		}
+		,{
+            "path" : "pages/comment/comment",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+	    ,{
+            "path" : "pages/about/about",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "公司简介",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/UserComment/UserComment",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "用户意见",
+                "enablePullDownRefresh": false
+            }
+            
+        },
+		{
+            "path" : "pages/Success/Success",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "提交成功",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+    ],
+	"tabBar": {
+		"color": "#000",
+		"selectedColor": "#13b2f9",
+		"list": [{
+				"iconPath": "/static/tabbar-icons/mail.png",
+				"selectedIconPath": "/static/tabbar-icons/mail_s.png",
+				"text": "首页",
+				"pagePath": "pages/index/index"
+			},
+			// {
+			// 	"iconPath": "/static/tabbar-icons/feeds.png",
+			// 	"selectedIconPath": "/static/tabbar-icons/feeds_s.png",
+			// 	"text": "意见",
+			// 	"pagePath": "pages/comment/comment"
+			// },
+			{
+				"iconPath": "/static/tabbar-icons/details.png",
+				"selectedIconPath": "/static/tabbar-icons/details_s.png",
+				"text": "关于",
+				"pagePath": "pages/about/about"
+			}
+		]
+	},
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "uni-app",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8"
+	},
+	"uniIdRouter": {}
+}

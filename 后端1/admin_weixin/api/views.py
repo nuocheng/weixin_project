@@ -85,6 +85,7 @@ def change_show(request):
 def add_info(request):
     if request.method=="POST":
         flag=request.POST.get("flag")
+        print(flag)
         if int(flag)==0:
             name="*********"
             number_id="*********"
