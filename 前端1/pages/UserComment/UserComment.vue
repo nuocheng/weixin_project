@@ -4,19 +4,22 @@
 			<uni-forms-item label="姓名" required name="name" label-width=50>
 				<uni-easyinput v-model="customFormData.name" placeholder="请输入姓名" />
 			</uni-forms-item>
+			<uni-forms-item label="工号" required name="number_id" label-width=50>
+				<uni-easyinput v-model="customFormData.number_id" placeholder="请输入工号,非必填选项" />
+			</uni-forms-item>
 			<uni-forms-item label="标题" required name="title" label-width=50>
 				<uni-easyinput v-model="customFormData.title" placeholder="请输入标题" />
 			</uni-forms-item>
-			<uni-forms-item>
-				<uni-easyinput type="textarea" v-model="customFormData.comment" placeholder="请输入意见正文" />
+			<uni-forms-item required name="content" >
+				<uni-easyinput type="textarea" v-model="customFormData.content" placeholder="请输入意见正文" />
 			</uni-forms-item>
-			<uni-forms-item label="图片上传" v-model="customFormData.image" label-width=55>
+			<uni-forms-item label="图片上传" v-model="customFormData.image" label-width=50 >
 				<view class="example-body">
-					<uni-file-picker limit="3" title=" "></uni-file-picker>
+					<uni-file-picker limit="3" title=" " ></uni-file-picker>
 				</view>
 			</uni-forms-item>
-			<uni-forms-item label="是否匿名" v-model="customFormData.anonymous" label-width=55>
-				<switch @change="switch2Change" class="anonymousRight"/>
+			<uni-forms-item label="是否匿名" required name="flag" v-model="customFormData.flag" label-width=50>
+				<switch @change="switch2Change" class="flagRight"/>
 			</uni-forms-item>
 		</uni-forms>
 		<button type="primary" @click="submit('customForm')">提交</button>
@@ -51,10 +54,11 @@
 				// 自定义表单数据
 				customFormData: {
 					name: '',
+					number_id:'',
 					title: '',
-					comment: '',
+					content: '',
 					image: '',
-					anonymous: ''
+					flag: 0,
 				},
 				// 自定义表单校验规则
 				customRules: {
@@ -64,19 +68,14 @@
 							errorMessage: '姓名不能为空'
 						}]
 					},
-					age: {
-						rules: [{
-							required: true,
-							errorMessage: '年龄不能为空'
-						}]
-					},
+					
 					title: {
 						rules: [{
 							required: true,
 							errorMessage: '标题不能为空'
 						}]
 					},
-					comment: {
+					content: {
 						rules: [{
 							required: true,
 							errorMessage: '正文内容不能为空'
@@ -154,7 +153,6 @@
 		display: flex;
 		align-items: center;
 	}
-
 	.button {
 		display: flex;
 		align-items: center;
@@ -162,8 +160,9 @@
 		margin-left: 10px;
 	}
 	.example-body {
-		padding: 10px;
+		padding: 5px;
 		padding-top: 0;
+		margin: auto;
 	}
 
 	.custom-image-box {

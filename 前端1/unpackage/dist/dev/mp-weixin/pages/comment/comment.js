@@ -6,6 +6,7 @@ const _sfc_main = {
       // 基础表单数据
       baseFormData: {
         name: "",
+        jobNum: "",
         age: "",
         introduction: "",
         sex: 2,
@@ -251,198 +252,207 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
       label: "姓名",
       required: true
     }),
-    e: common_vendor.o(($event) => $data.baseFormData.age = $event),
+    e: common_vendor.o(($event) => $data.baseFormData.jobNum = $event),
     f: common_vendor.p({
+      placeholder: "请输入工号",
+      modelValue: $data.baseFormData.jobNum
+    }),
+    g: common_vendor.p({
+      label: "工号",
+      required: true
+    }),
+    h: common_vendor.o(($event) => $data.baseFormData.age = $event),
+    i: common_vendor.p({
       placeholder: "请输入年龄",
       modelValue: $data.baseFormData.age
     }),
-    g: common_vendor.p({
+    j: common_vendor.p({
       label: "年龄",
       required: true
     }),
-    h: common_vendor.o(($event) => $data.baseFormData.sex = $event),
-    i: common_vendor.p({
+    k: common_vendor.o(($event) => $data.baseFormData.sex = $event),
+    l: common_vendor.p({
       localdata: $data.sexs,
       modelValue: $data.baseFormData.sex
     }),
-    j: common_vendor.p({
+    m: common_vendor.p({
       label: "性别",
       required: true
     }),
-    k: common_vendor.o(($event) => $data.baseFormData.hobby = $event),
-    l: common_vendor.p({
+    n: common_vendor.o(($event) => $data.baseFormData.hobby = $event),
+    o: common_vendor.p({
       multiple: true,
       localdata: $data.hobbys,
       modelValue: $data.baseFormData.hobby
     }),
-    m: common_vendor.p({
+    p: common_vendor.p({
       label: "兴趣爱好",
       required: true
     }),
-    n: common_vendor.o(($event) => $data.baseFormData.introduction = $event),
-    o: common_vendor.p({
+    q: common_vendor.o(($event) => $data.baseFormData.introduction = $event),
+    r: common_vendor.p({
       type: "textarea",
       placeholder: "请输入自我介绍",
       modelValue: $data.baseFormData.introduction
     }),
-    p: common_vendor.p({
+    s: common_vendor.p({
       label: "自我介绍"
     }),
-    q: common_vendor.o(($event) => $data.baseFormData.datetimesingle = $event),
-    r: common_vendor.p({
+    t: common_vendor.o(($event) => $data.baseFormData.datetimesingle = $event),
+    v: common_vendor.p({
       type: "datetime",
       ["return-type"]: "timestamp",
       modelValue: $data.baseFormData.datetimesingle
     }),
-    s: common_vendor.p({
+    w: common_vendor.p({
       label: "日期时间"
     }),
-    t: common_vendor.p({
+    x: common_vendor.p({
       limit: "3",
       title: "最多选择3张图片"
     }),
-    v: common_vendor.p({
+    y: common_vendor.p({
       label: "图片上传"
     }),
-    w: common_vendor.o((...args) => $options.switch2Change && $options.switch2Change(...args)),
-    x: common_vendor.p({
+    z: common_vendor.o((...args) => $options.switch2Change && $options.switch2Change(...args)),
+    A: common_vendor.p({
       label: "是否匿名"
     }),
-    y: common_vendor.sr("baseForm", "64b487d2-2,64b487d2-1"),
-    z: common_vendor.p({
+    B: common_vendor.sr("baseForm", "64b487d2-2,64b487d2-1"),
+    C: common_vendor.p({
       modelValue: $data.baseFormData
     }),
-    A: common_vendor.p({
+    D: common_vendor.p({
       title: "基本用法",
       type: "line"
     }),
-    B: common_vendor.o($options.onClickItem),
-    C: common_vendor.p({
+    E: common_vendor.o($options.onClickItem),
+    F: common_vendor.p({
       current: $data.current,
       values: $data.items,
       styleType: "button"
     }),
-    D: common_vendor.o(($event) => $data.baseFormData.name = $event),
-    E: common_vendor.p({
+    G: common_vendor.o(($event) => $data.baseFormData.name = $event),
+    H: common_vendor.p({
       placeholder: "请输入姓名",
       modelValue: $data.baseFormData.name
     }),
-    F: common_vendor.p({
+    I: common_vendor.p({
       label: "姓名",
       required: true
     }),
-    G: common_vendor.o(($event) => $data.baseFormData.age = $event),
-    H: common_vendor.p({
+    J: common_vendor.o(($event) => $data.baseFormData.age = $event),
+    K: common_vendor.p({
       placeholder: "请输入年龄",
       modelValue: $data.baseFormData.age
     }),
-    I: common_vendor.p({
+    L: common_vendor.p({
       label: "年龄",
       required: true
     }),
-    J: common_vendor.sr("baseForm", "64b487d2-20,64b487d2-18"),
-    K: common_vendor.p({
+    M: common_vendor.sr("baseForm", "64b487d2-22,64b487d2-20"),
+    N: common_vendor.p({
       modelValue: $data.alignmentFormData,
       ["label-position"]: $options.alignment
     }),
-    L: common_vendor.p({
+    O: common_vendor.p({
       title: "对齐方式",
       type: "line"
     }),
-    M: common_vendor.o(($event) => $data.valiFormData.name = $event),
-    N: common_vendor.p({
+    P: common_vendor.o(($event) => $data.valiFormData.name = $event),
+    Q: common_vendor.p({
       placeholder: "请输入姓名",
       modelValue: $data.valiFormData.name
     }),
-    O: common_vendor.p({
+    R: common_vendor.p({
       label: "姓名",
       required: true,
       name: "name"
     }),
-    P: common_vendor.o(($event) => $data.valiFormData.age = $event),
-    Q: common_vendor.p({
+    S: common_vendor.o(($event) => $data.valiFormData.age = $event),
+    T: common_vendor.p({
       placeholder: "请输入年龄",
       modelValue: $data.valiFormData.age
     }),
-    R: common_vendor.p({
+    U: common_vendor.p({
       label: "年龄",
       required: true,
       name: "age"
     }),
-    S: common_vendor.o(($event) => $data.valiFormData.introduction = $event),
-    T: common_vendor.p({
+    V: common_vendor.o(($event) => $data.valiFormData.introduction = $event),
+    W: common_vendor.p({
       type: "textarea",
       placeholder: "请输入自我介绍",
       modelValue: $data.valiFormData.introduction
     }),
-    U: common_vendor.p({
+    X: common_vendor.p({
       label: "自我介绍",
       name: "introduction"
     }),
-    V: common_vendor.sr("valiForm", "64b487d2-26,64b487d2-25"),
-    W: common_vendor.p({
+    Y: common_vendor.sr("valiForm", "64b487d2-28,64b487d2-27"),
+    Z: common_vendor.p({
       rules: $data.rules,
       modelValue: $data.valiFormData
     }),
-    X: common_vendor.o(($event) => $options.submit("valiForm")),
-    Y: common_vendor.p({
+    aa: common_vendor.o(($event) => $options.submit("valiForm")),
+    ab: common_vendor.p({
       title: "表单校验",
       type: "line"
     }),
-    Z: common_vendor.o(($event) => $data.customFormData.name = $event),
-    aa: common_vendor.p({
+    ac: common_vendor.o(($event) => $data.customFormData.name = $event),
+    ad: common_vendor.p({
       placeholder: "请输入姓名",
       modelValue: $data.customFormData.name
     }),
-    ab: common_vendor.p({
+    ae: common_vendor.p({
       label: "姓名",
       required: true,
       name: "name"
     }),
-    ac: common_vendor.o(($event) => $data.customFormData.age = $event),
-    ad: common_vendor.p({
+    af: common_vendor.o(($event) => $data.customFormData.age = $event),
+    ag: common_vendor.p({
       placeholder: "请输入年龄",
       modelValue: $data.customFormData.age
     }),
-    ae: common_vendor.p({
+    ah: common_vendor.p({
       label: "年龄",
       required: true,
       name: "age"
     }),
-    af: common_vendor.o(($event) => $data.customFormData.hobby = $event),
-    ag: common_vendor.p({
+    ai: common_vendor.o(($event) => $data.customFormData.hobby = $event),
+    aj: common_vendor.p({
       multiple: true,
       localdata: $data.hobbys,
       modelValue: $data.customFormData.hobby
     }),
-    ah: common_vendor.p({
+    ak: common_vendor.p({
       label: "兴趣爱好",
       required: true,
       name: "hobby"
     }),
-    ai: common_vendor.sr("customForm", "64b487d2-34,64b487d2-33"),
-    aj: common_vendor.p({
+    al: common_vendor.sr("customForm", "64b487d2-36,64b487d2-35"),
+    am: common_vendor.p({
       rules: $data.customRules,
       modelValue: $data.customFormData
     }),
-    ak: common_vendor.o(($event) => $options.submit("customForm")),
-    al: common_vendor.p({
+    an: common_vendor.o(($event) => $options.submit("customForm")),
+    ao: common_vendor.p({
       title: "自定义校验规则",
       type: "line"
     }),
-    am: common_vendor.o(($event) => $data.dynamicFormData.email = $event),
-    an: common_vendor.p({
+    ap: common_vendor.o(($event) => $data.dynamicFormData.email = $event),
+    aq: common_vendor.p({
       placeholder: "请输入姓名",
       modelValue: $data.dynamicFormData.email
     }),
-    ao: common_vendor.p({
+    ar: common_vendor.p({
       label: "邮箱",
       required: true,
       name: "email"
     }),
-    ap: common_vendor.f($data.dynamicLists, (item, index, i0) => {
+    as: common_vendor.f($data.dynamicLists, (item, index, i0) => {
       return {
-        a: "64b487d2-46-" + i0 + "," + ("64b487d2-45-" + i0),
+        a: "64b487d2-48-" + i0 + "," + ("64b487d2-47-" + i0),
         b: common_vendor.o(($event) => $data.dynamicFormData.domains[item.id] = $event, item.id),
         c: common_vendor.p({
           placeholder: "请输入域名",
@@ -450,7 +460,7 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
         }),
         d: common_vendor.o(($event) => $options.del(item.id), item.id),
         e: item.id,
-        f: "64b487d2-45-" + i0 + ",64b487d2-42",
+        f: "64b487d2-47-" + i0 + ",64b487d2-44",
         g: common_vendor.p({
           label: item.label + " " + index,
           required: true,
@@ -459,14 +469,14 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
         })
       };
     }),
-    aq: common_vendor.sr("dynamicForm", "64b487d2-42,64b487d2-41"),
-    ar: common_vendor.p({
+    at: common_vendor.sr("dynamicForm", "64b487d2-44,64b487d2-43"),
+    av: common_vendor.p({
       rules: $data.dynamicRules,
       modelValue: $data.dynamicFormData
     }),
-    as: common_vendor.o((...args) => $options.add && $options.add(...args)),
-    at: common_vendor.o(($event) => $options.submit("dynamicForm")),
-    av: common_vendor.p({
+    aw: common_vendor.o((...args) => $options.add && $options.add(...args)),
+    ax: common_vendor.o(($event) => $options.submit("dynamicForm")),
+    ay: common_vendor.p({
       title: "动态表单",
       type: "line"
     })

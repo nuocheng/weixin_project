@@ -10,6 +10,9 @@
 					<uni-forms-item label="姓名" required>
 						<uni-easyinput v-model="baseFormData.name" placeholder="请输入姓名" />
 					</uni-forms-item>
+					<uni-forms-item label="工号" required>
+						<uni-easyinput v-model="baseFormData.jobNum" placeholder="请输入工号" />
+					</uni-forms-item>
 					<uni-forms-item label="年龄" required>
 						<uni-easyinput v-model="baseFormData.age" placeholder="请输入年龄" />
 					</uni-forms-item>
@@ -123,6 +126,7 @@
 				// 基础表单数据
 				baseFormData: {
 					name: '',
+					jobNum:'',
 					age: '',
 					introduction: '',
 					sex: 2,
