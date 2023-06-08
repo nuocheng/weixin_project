@@ -109,6 +109,11 @@ const _sfc_main = {
     },
     switch2Change: function(e) {
       console.log("switch2 发生 change 事件，携带值为", e.detail.value);
+      if(e.detail.value== true){
+        this.customFormData.flag=0;
+      }
+      // this.customFormData.
+      // this.data.customFormData.flag=e.detail.value
     }
   }
 };
