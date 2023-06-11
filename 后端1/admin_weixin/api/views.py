@@ -1,9 +1,16 @@
+import json
+
 from django.shortcuts import render,redirect,reverse
 from django.http import JsonResponse
 from .models import *
+from collections import Counter
+import jieba
+import pandas as pd
 from .serializer_change import *
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from django.http import StreamingHttpResponse
+from django.core import serializers
 # Create your views here.
 
 
@@ -136,7 +143,68 @@ def get_show(request):
         return JsonResponse({"info":all_info})
 
 
+def v_show(request):
+    if request.method=='GET':
+        return render(request,"v-index.html")
 
+
+
+
+def get_info(request):
+    def ent_steam():
+        all_info=Opinion.objects.all()
+        data=pd.DataFrame(all_info.values())
+        all_num=data.shape[0]
+        need_show_num=data.loc[data['flag']==1,:].shape[0]
+        ratio_num=round((need_show_num/all_num)*100,2)
+        title="".join(data['title'].tolist())
+        title_list=list(jieba.cut(title))
+        stopwords = [line.strip() for line in [',','，','.','的','得','地','\d']]
+
+        keyword=[]
+        for word in title_list:
+            if word not in stopwords:
+                keyword.append(word)
+        op_all_info = Opinion.objects.filter(show=1).order_by("-create_at")
+        keywords=dict(Counter(keyword))
+        keys=[]
+        for item in keywords.keys():
+            keys.append({ "value": keywords[item], "name":item  })
+        all_info = []
+        for item in op_all_info:
+            demo = Image.objects.filter(op_id=item)
+            image_file = []
+            for i in demo:
+                image_file.append(str(i.image))
+            info = {
+                "id": item.id,
+                "name": item.name,
+                "number_id": item.number_id,
+                "title": item.title,
+                "content": item.content,
+                "flag": item.flag,
+                "show": item.show,
+                "create_at": item.create_at.date().strftime("%Y-%m-%d"),
+                "image": image_file
+            }
+            all_info.append(info)
+
+        data={
+            "data":all_info,
+            "recent":all_info[:7],
+            "keywords":keys,
+            "show_num":need_show_num,
+            "all_num":all_num,
+            "ratio_num":ratio_num,
+
+        }
+        # print(data)
+        # data=serializers.serialize("json",data)
+        yield "data:{}\n\n".format(json.dumps(data))
+
+    response = StreamingHttpResponse(ent_steam(), content_type='text/event-stream')
+    response['Cache-Control'] = 'no-cache'
+    return response
 
 
 
