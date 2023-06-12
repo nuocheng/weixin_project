@@ -118,6 +118,36 @@ def add_info(request):
                 images.save()
         return JsonResponse({"flag":1,"message":"success"})
 
+@login_required
+def delete_info(request):
+    if request.method=='GET':
+        id=request.GET.get("id")
+        opinion_demo=Opinion.objects.get(id=id)
+        if opinion_demo:
+            opinion_demo.delete()
+        op_all_info = Opinion.objects.all()
+        all_info = []
+        for item in op_all_info:
+            demo = Image.objects.filter(op_id=item)
+            image_file = []
+            for i in demo:
+                image_file.append(i.image)
+            info = {
+                "id": item.id,
+                "name": item.name,
+                "number_id": item.number_id,
+                "title": item.title,
+                "content": item.content,
+                "flag": item.flag,
+                "show": item.show,
+                "create_at": item.create_at,
+                "image": image_file
+            }
+            all_info.append(info)
+        return render(request, "index_v1.html", context={"info": all_info})
+
+
+
 
 def get_show(request):
     if request.method=="GET":
@@ -152,7 +182,7 @@ def v_show(request):
 
 def get_info(request):
     def ent_steam():
-        all_info=Opinion.objects.all()
+        all_info=Opinion.objects.filter(show=1)
         data=pd.DataFrame(all_info.values())
         all_num=data.shape[0]
         need_show_num=data.loc[data['flag']==1,:].shape[0]
@@ -205,14 +235,6 @@ def get_info(request):
     response = StreamingHttpResponse(ent_steam(), content_type='text/event-stream')
     response['Cache-Control'] = 'no-cache'
     return response
-
-
-
-
-
-
-
-
 
 
 #获取所有管理员信息api
