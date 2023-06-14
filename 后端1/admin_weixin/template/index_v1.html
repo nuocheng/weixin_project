@@ -53,7 +53,7 @@
                                         <td>{{ item.title }}</td>
                                         <td>{{ item.content }}</td>
                                         <td>
-                                            {% if item.flag == 0 %}匿名{%else%}不匿名{%endif%}</td>
+                                            {% if item.flag == 0 %}不匿名{%else%}匿名{%endif%}</td>
                                         <td>{% for i in item.image %} <li><a href="/static/upload/{{i}}">{{ i }}</a></li> {%endfor%}</td>
                                         <td>
                                             {% if item.show == 0 %}
@@ -63,6 +63,11 @@
                                             <a type="button" class="btn btn-warning" href="{%url 'admin_home:change_show' %}?id={{ item.id }}&value=0">不进行展示</a>
                                             {% endif %}
                                             <a type="button" class="btn btn-danger" href="{%url 'admin_home:delete_info' %}?id={{ item.id }}">删除信息</a>
+                                            {% if item.flag == 1 %}
+                                            <a type="button" class="btn btn-primary" href="{%url 'admin_home:change_flag' %}?id={{ item.id }}">不匿名</a>
+                                            {% else %}
+                                            <a type="button" class="btn btn-default" href="{%url 'admin_home:change_flag' %}?id={{ item.id }}">匿名</a>
+                                            {% endif %}
                                         </td>
 
                                     </tr>

@@ -13,5 +13,6 @@ urlpatterns = [
     path("get_show/",views.get_show,name="get_show"),
     path("",views.v_show,name="v_show"),
     path("get_info/",views.get_info,name="get_info"),
+    path("change_flag/",views.change_flag,name="change_flag"),
 
 ]

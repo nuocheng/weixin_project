@@ -26,7 +26,7 @@
 .btn-row{
 		padding: 50px;
 }
-.btn-row[type=primary] {
+.btn-row {
 		margin: 50% 50%;
 		background-image: linear-gradient(to center, #66b7f9,#1c82d4);
 }

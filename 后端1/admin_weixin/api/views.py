@@ -92,13 +92,14 @@ def change_show(request):
 def add_info(request):
     if request.method=="POST":
         flag=request.POST.get("flag")
-        print(flag)
-        if int(flag)==0:
-            name="*********"
-            number_id="*********"
+        if int(flag)==1:   #进行匿名
+            # name="*********"
+            # number_id="*********"
+            pass
         else:
-            name=request.POST.get("name")
-            number_id=request.POST.get("number_id")
+            pass
+        name=request.POST.get("name")
+        number_id=request.POST.get("number_id")
         title=request.POST.get("title")
         content=request.POST.get('content')
         image=request.FILES.getlist("image")
@@ -158,17 +159,30 @@ def get_show(request):
             image_file=[]
             for i in demo:
                 image_file.append(str(i.image))
-            info={
-                "id":item.id,
-                "name":item.name,
-                "number_id":item.number_id,
-                "title":item.title,
-                "content":item.content,
-                "flag":item.flag,
-                "show":item.show,
-                "create_at":item.create_at,
-                "image":image_file
-            }
+            if item.flag==1:
+                info={
+                    "id":item.id,
+                    "name":"*"*10,
+                    "number_id":"*"*10,
+                    "title":item.title,
+                    "content":item.content,
+                    "flag":item.flag,
+                    "show":item.show,
+                    "create_at":item.create_at,
+                    "image":image_file
+                }
+            else:
+                info = {
+                    "id": item.id,
+                    "name": item.name,
+                    "number_id":item.number_id,
+                    "title": item.title,
+                    "content": item.content,
+                    "flag": item.flag,
+                    "show": item.show,
+                    "create_at": item.create_at,
+                    "image": image_file
+                }
             all_info.append(info)
         return JsonResponse({"info":all_info})
 
@@ -206,17 +220,31 @@ def get_info(request):
             image_file = []
             for i in demo:
                 image_file.append(str(i.image))
-            info = {
-                "id": item.id,
-                "name": item.name,
-                "number_id": item.number_id,
-                "title": item.title,
-                "content": item.content,
-                "flag": item.flag,
-                "show": item.show,
-                "create_at": item.create_at.date().strftime("%Y-%m-%d"),
-                "image": image_file
-            }
+            size_len=len(image_file)
+            if item.flag==1:
+                info={
+                    "id":item.id,
+                    "name":"*"*10,
+                    "number_id":"*"*10,
+                    "title":item.title,
+                    "content":item.content,
+                    "flag":item.flag,
+                    "show":item.show,
+                    "create_at":item.create_at.date().strftime("%Y-%m-%d"),
+                    "image":image_file
+                }
+            else:
+                info = {
+                    "id": item.id,
+                    "name": item.name,
+                    "number_id":item.number_id,
+                    "title": item.title,
+                    "content": item.content,
+                    "flag": item.flag,
+                    "show": item.show,
+                    "create_at": item.create_at.date().strftime("%Y-%m-%d"),
+                    "image": image_file
+                }
             all_info.append(info)
 
         data={
@@ -235,6 +263,42 @@ def get_info(request):
     response = StreamingHttpResponse(ent_steam(), content_type='text/event-stream')
     response['Cache-Control'] = 'no-cache'
     return response
+
+
+
+@login_required
+def change_flag(request):
+    if request.method=='GET':
+        id=request.GET.get("id")
+        demo=Opinion.objects.get(id=id)
+        if demo:
+            if demo.flag==1:
+                demo.flag=0
+            else:
+                demo.flag=1
+            demo.save()
+        op_all_info = Opinion.objects.all()
+        all_info = []
+        for item in op_all_info:
+            demo = Image.objects.filter(op_id=item)
+            image_file = []
+            for i in demo:
+                image_file.append(i.image)
+            info = {
+                "id": item.id,
+                "name": item.name,
+                "number_id": item.number_id,
+                "title": item.title,
+                "content": item.content,
+                "flag": item.flag,
+                "show": item.show,
+                "create_at": item.create_at,
+                "image": image_file
+            }
+            all_info.append(info)
+        return render(request, "index_v1.html", context={"info": all_info})
+
+
 
 
 #获取所有管理员信息api

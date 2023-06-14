@@ -51,7 +51,7 @@
     </li>
     <li>
       
-      <div class="boxall" style="height:calc(1% - .25rem);visibility: hidden;">
+      <div class="boxall" style="height:calc(0% - .25rem);visibility: hidden;">
         <div class="tit02">数据量</div>
         <div class="boxnav nav02" style="">
 		  	<div>
@@ -69,7 +69,7 @@
 			 <div class="boxnav nav03">
 				 
 				 <div class="listhead listhead1">
-				  <span>序号</span>
+				  <!--<span>序号</span>-->
 					  <span>姓名</span>
 					  <span>员工号</span>
 					  <span>主题</span>
@@ -188,10 +188,17 @@ $(document).ready(function(){
                 '                    <span class="text-green">'+data['data'][i]['title']+'</span>\n' +
                 '                    <span> '+data['data'][i]['create_at']+'</span>\n' +
                 '                  </li>'
+
             }
             for(var i=0;i<data['recent'].length;i++){
-                content1+=' <li> <span>'+(i+1)+'</span> <span>'+data['recent'][i]['name']+'</span> <span>'+data['recent'][i]['number_id']+'</span> ' +
+                content1+=' <li > <span>'+data['recent'][i]['name']+'</span> <span>'+data['recent'][i]['number_id']+'</span> ' +
                     '<span>'+data['recent'][i]['title']+'</span> <span>'+data['recent'][i]['content']+'</span> <span class="text-green">'+data['recent'][i]['create_at']+'</span></li>'
+                content1+="<li style='padding:1.6%;'>";
+                for(var j=0;j<data['recent'][i]['image'].length;j++){
+                    content1+="<img src='/static/upload/"+data['recent'][i]['image'][j]+"' style='float:left;width:9%;margin-left:2%;'/>"
+
+                }
+                content1+="</li>"
             }
             document.getElementById("smjl_1").innerHTML=content;
             document.getElementById("show_data").innerHTML=data['show_num'];
@@ -238,7 +245,14 @@ $(document).ready(function(){
                   shadowOffsetX: 0,
                   shadowColor: 'rgba(0, 0, 0, 0.5)'
                 }
-              }
+              },
+                label:{
+                  normal:{
+                      position:'inner',
+                      show:true,
+                      formatter:'{d}%'
+                  }
+                }
             }
           ]
         };
