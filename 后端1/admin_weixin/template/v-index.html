@@ -5,6 +5,30 @@
 <title>index</title>
 <script type="text/javascript" src="/static/show/js/jquery.js"></script>
 <link rel="stylesheet" href="/static/show/css/comon0.css">
+    <style>
+   /* 遮罩层样式 */
+    #overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      z-index: 9999;
+    }
+
+    /* 放大图片样式 */
+    #overlay img {
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      max-width: 90%;
+      max-height: 90%;
+    }
+    </style>
 </head>
 <body>
 <div class="loading">
@@ -86,12 +110,15 @@
 			</div>
         <div class="boxfoot"></div>
       </div>
+                 <div id="overlay">
+            <img src="">
+          </div>
     </li>
     <li>
       <div class="boxall"   style="height:calc(100% - .25rem); padding: 0;">
         <div class="tit04">全部可展示信息</div>
  <div class="boxnav nav04">
-	 
+
 	  <div class="listhead listhead2">        
 				  <span>姓名</span>
 					  <span>主题</span>
@@ -195,7 +222,9 @@ $(document).ready(function(){
                     '<span>'+data['recent'][i]['title']+'</span> <span>'+data['recent'][i]['content']+'</span> <span class="text-green">'+data['recent'][i]['create_at']+'</span></li>'
                 content1+="<li style='padding:1.6%;'>";
                 for(var j=0;j<data['recent'][i]['image'].length;j++){
-                    content1+="<img src='/static/upload/"+data['recent'][i]['image'][j]+"' style='float:left;width:9%;margin-left:2%;'/>"
+                    content1+="<img class='zoomable-image' src='/static/upload/"+data['recent'][i]['image'][j]+
+                        "'data-large='/static/upload/"+data['recent'][i]['image'][j]+
+                        "' style='float:left;width:9%;margin-left:2%;'/>"
 
                 }
                 content1+="</li>"
@@ -275,6 +304,21 @@ $(document).ready(function(){
     }
 
  })
+</script>
+<script>
+$(document).ready(function() {
+  // 点击图片时触发
+  $(document).on('click', '.zoomable-image', function() {
+    var imageUrl = $(this).attr('src');
+    $('#overlay img').attr('src', imageUrl);
+    $('#overlay').fadeIn();
+  });
+
+  // 点击遮罩层时隐藏
+  $('#overlay').click(function() {
+    $(this).fadeOut();
+  });
+});
 </script>
 </body>
 </html>
